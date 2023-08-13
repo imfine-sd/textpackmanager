@@ -1,0 +1,19 @@
+<section id="textEditor">
+  <h1>In this section</h1>
+</section>
+
+<script>
+  onmessage = (event) => {
+    document.getElementById("textEditor").innerHTML = event.data
+      .pluginMessage[0]
+      ? event.data.pluginMessage[0].id
+      : "No selection";
+  };
+</script>
+
+<style>
+  body {
+    background-color: var(--figma-color-bg);
+    color: var(--figma-color-text);
+  }
+</style>

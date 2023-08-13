@@ -4,13 +4,19 @@
   "description": "Your Figma Plugin",
   "main": "code.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "watch": "npm run build -- --watch"
+    "build": "webpack",
+    "watch": "npm run build -- --watch",
+    "dev": "webpack --mode=development --watch"
   },
   "author": "",
   "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "*",
-    "typescript": "*"
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   }
 }

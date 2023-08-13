@@ -1,0 +1,26 @@
+<main id="main">
+  <h1>All Texts</h1>
+  <ul id="textNodes"></ul>
+</main>
+
+<script>
+  const textNodes = document.getElementById("textNodes");
+  onmessage = (event) => {
+    // textNodes.innerHTML = event.data.pluginMessage;
+    const data = JSON.parse(event.data.pluginMessage);
+    data.forEach((element) => {
+      const li = document.createElement("li");
+      li.innerText = element;
+      textNodes.appendChild(li);
+    });
+    (a) => {
+      textNodes.append();
+    };
+  };
+</script>
+<style>
+  body {
+    background-color: var(--figma-color-bg);
+    color: var(--figma-color-text);
+  }
+</style>
