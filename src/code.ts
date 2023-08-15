@@ -1,12 +1,11 @@
-import onRun from "./handlers/interaction/onRun";
-import onDocumentChange from "./handlers/interaction/onDocumentChange";
-import onSelectionsChange from "./handlers/interaction/onSelectionChange";
-import onCurrentPageChange from "./handlers/interaction/onCurrentPageChange";
-import resetUI from "./interface/setUI";
+const page = {
+  ...__uiFiles__,
+};
 
-resetUI();
+figma.showUI(page.main);
 
-figma.on("run", onRun);
-figma.on("documentchange", onDocumentChange);
-figma.on("selectionchange", onSelectionsChange);
-figma.on("currentpagechange", onCurrentPageChange);
+figma.ui.onmessage = (message) => {
+  const newText = figma.createText();
+  newText.fontName = { family: "Inconsolata", style: "normal" };
+  newText.characters = message;
+};

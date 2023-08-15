@@ -1,23 +1,28 @@
-<main id="main">
-  <h1>All Texts</h1>
-  <ul id="textNodes"></ul>
+<main id="page">
+  <section id="input_section">
+    <button id="btn" type="button">create text</button>
+  </section>
+  <section id="output_section">
+    <ul></ul>
+  </section>
 </main>
 
 <script>
-  const textNodes = document.getElementById("textNodes");
+  const btn = document.getElementById("btn");
+
+  btn.onclick = () =>
+    parent.postMessage({ pluginMessage: "", pluginId: "*" }, "*");
+
+  onload = () => {
+    //TODO: on Routing
+  };
   onmessage = (event) => {
-    // textNodes.innerHTML = event.data.pluginMessage;
-    const data = JSON.parse(event.data.pluginMessage);
-    data.forEach((element) => {
-      const li = document.createElement("li");
-      li.innerText = element;
-      textNodes.appendChild(li);
-    });
-    (a) => {
-      textNodes.append();
-    };
+    console.log(event);
+    const figmaMessage = event.data.pluginMessage;
+    const data = JSON.parse(figmaMessage);
   };
 </script>
+
 <style>
   body {
     background-color: var(--figma-color-bg);
