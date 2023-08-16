@@ -1,11 +1,16 @@
-const page = {
-  ...__uiFiles__,
-};
+import useNavigator from "./router";
 
-figma.showUI(page.main);
+function main() {
+  const navigator = useNavigator();
+
+  //initialize==================================================================
+  navigator.init();
+
+  figma.ui.postMessage("aaa");
+}
 
 figma.ui.onmessage = (message) => {
-  const newText = figma.createText();
-  newText.fontName = { family: "Inconsolata", style: "normal" };
-  newText.characters = message;
+  console.log(message);
 };
+
+main();

@@ -1,0 +1,30 @@
+<main id="page">
+  <section id="input_section">
+    <h3>Import File</h3>
+    <input id="file_input" type="file" />
+  </section>
+  <hr />
+  <section id="output_section">
+    <h3>Text Pack</h3>
+    <ul></ul>
+  </section>
+</main>
+
+<script>
+  onload = () => {
+    //TODO: on Routing
+  };
+
+  onmessage = (event) => {
+    console.log(event);
+    const figmaMessage = event.data.pluginMessage;
+    const data = JSON.parse(figmaMessage);
+  };
+</script>
+
+<style>
+  body {
+    background-color: var(--figma-color-bg);
+    color: var(--figma-color-text);
+  }
+</style>

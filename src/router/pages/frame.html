@@ -1,6 +1,7 @@
-<main id="page">
+<main id="frame">
   <section id="input_section">
-    <button id="btn" type="button">create text</button>
+    <h2>Editor</h2>
+    <input id="file_input" type="file" />
   </section>
   <section id="output_section">
     <ul></ul>
@@ -8,14 +9,14 @@
 </main>
 
 <script>
+  onload = () => {
+    //TODO: on Routing
+  };
   const btn = document.getElementById("btn");
 
   btn.onclick = () =>
     parent.postMessage({ pluginMessage: "", pluginId: "*" }, "*");
 
-  onload = () => {
-    //TODO: on Routing
-  };
   onmessage = (event) => {
     console.log(event);
     const figmaMessage = event.data.pluginMessage;
