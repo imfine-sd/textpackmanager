@@ -7,16 +7,30 @@
   <section id="output_section">
     <h3>Text Pack</h3>
     <ul></ul>
+    <button id="getAllText">Get ALL TEXT</button>
   </section>
 </main>
 
 <script>
+  const button = document.getElementById("getAllText");
+
+  function send(method, param) {
+    const pluginMessage = JSON.stringify({ method, param });
+    const message = { pluginMessage };
+    parent.postMessage(message, "*");
+  }
+
+  button.onclick = () => {
+    const method = button.id;
+    const message = "hello world";
+    send(method, message);
+  };
+
   onload = () => {
     //TODO: on Routing
   };
 
   onmessage = (event) => {
-    console.log(event);
     const figmaMessage = event.data.pluginMessage;
     const data = JSON.parse(figmaMessage);
   };

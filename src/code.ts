@@ -1,16 +1,13 @@
 import useNavigator from "./router";
+import onUImessage from "./api/listener";
 
 function main() {
   const navigator = useNavigator();
 
   //initialize==================================================================
   navigator.init();
-
-  figma.ui.postMessage("aaa");
 }
 
-figma.ui.onmessage = (message) => {
-  console.log(message);
-};
+figma.ui.onmessage = onUImessage;
 
 main();

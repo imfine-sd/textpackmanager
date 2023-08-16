@@ -6,7 +6,7 @@ function navigate(page: Page) {
 }
 
 function useNavigator() {
-  const onCurrentPageChange = () => {
+  const onSelectionChange = () => {
     const selection = figma.currentPage.selection;
     if (selection.length > 0) {
       navigate("frame");
@@ -14,10 +14,19 @@ function useNavigator() {
       navigate("page");
     }
   };
+
+  // const onCurrentPageChange = () => {
+  //   const selection = figma.currentPage.selection;
+  //   if (selection.length > 0) {
+  //     navigate("frame");
+  //   } else {
+  //     navigate("page");
+  //   }
+  // };
   return {
     init: () => {
-      onCurrentPageChange();
-      figma.on("currentpagechange", onCurrentPageChange);
+      onSelectionChange();
+      figma.on("selectionchange", onSelectionChange);
     },
   };
 }
