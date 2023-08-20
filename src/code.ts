@@ -5,9 +5,14 @@ function main() {
   const navigator = useNavigator();
 
   //initialize==================================================================
-  navigator.init();
+  function initialize() {
+    navigator.init();
+  }
+
+  return initialize();
 }
 
+// retrive message from uimessage
 figma.ui.onmessage = onUImessage;
 
 main();

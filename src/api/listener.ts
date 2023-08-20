@@ -1,3 +1,5 @@
+import useTextMapper from "../text_mapper";
+
 interface ImportData {
   method: "import";
   param: string;
@@ -19,12 +21,16 @@ type PluginData = ImportData | ExportData | SelectData | ChangeData;
 
 function pluginDataHandler(data: PluginData) {
   const { method, param } = data;
+  const textMapper = useTextMapper();
+
+  console.log(data);
 
   switch (method) {
     case "import": {
       //TODO : import xlsx or json
     }
     case "export": {
+      textMapper.onExport();
       //TODO : export xlsx or json
     }
     case "change": {

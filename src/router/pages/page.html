@@ -1,38 +1,60 @@
 <main id="page">
   <section id="input_section">
-    <h3>Import File</h3>
-    <input id="file_input" type="file" />
+    <h3>Import Options</h3>
+    <button id="import_file">IMPORT</button>
   </section>
   <hr />
   <section id="output_section">
-    <h3>Text Pack</h3>
-    <ul></ul>
-    <button id="getAllText">Get ALL TEXT</button>
+    <h3>EXPORT Options</h3>
+    <button id="export_file">EXPORT</button>
   </section>
 </main>
 
 <script>
-  const button = document.getElementById("getAllText");
-
+  /**FIGMA PLUGIN **/
   function send(method, param) {
     const pluginMessage = JSON.stringify({ method, param });
     const message = { pluginMessage };
     parent.postMessage(message, "*");
   }
 
-  button.onclick = () => {
-    const method = button.id;
-    const message = "hello world";
-    send(method, message);
-  };
-
-  onload = () => {
-    //TODO: on Routing
-  };
-
   onmessage = (event) => {
     const figmaMessage = event.data.pluginMessage;
     const data = JSON.parse(figmaMessage);
+
+    switch (data.type) {
+      case "update": {
+        const json = JSON.parse(data.value);
+        console.log(data.targetId);
+        console.log(json);
+        json.forEach((scene) => {
+          console.log(scene);
+          const output_section = document.getElementById("output_section");
+          const section = document.createElement("section");
+          const h3 = document.createElement("h3");
+          const ul = document.createElement("ul");
+          output_section.appendChild(section);
+          section.appendChild(h3);
+          section.appendChild(ul);
+          h3.innerText = scene.name;
+          ul.id = scene.name;
+          scene.textNodes.forEach((textNode) => {
+            const li = document.createElement("li");
+            ul.appendChild(li);
+            li.innerText = textNode.characters;
+          });
+        });
+      }
+    }
+  };
+  /**IMPORT File FUNCTION**/
+
+  /**EXPORT File FUNCTION**/
+  const exportButton = document.getElementById("export_file");
+  exportButton.onclick = () => {
+    const method = "export";
+    const message = "hello world";
+    send(method, message);
   };
 </script>
 

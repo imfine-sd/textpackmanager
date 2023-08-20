@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Scene-2",
+    "textNodes": [
+      {
+        "characters": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod vero sint possimus, ex laboriosam quas, natus dolor, amet velit dolorem aperiam doloribus fuga quasi odit corrupti officia corporis eligendi culpa.",
+        "start": 0,
+        "end": 209,
+        "fontSize": 32,
+        "fontName": { "family": "Inter", "style": "Regular" },
+        "fontWeight": 400
+      },
+
+      {
+        "characters": "GOOD JOB",
+        "start": 0,
+        "end": 8,
+        "fontSize": 64,
+        "fontName": { "family": "Inconsolata", "style": "Bold" },
+        "fontWeight": 700
+      },
+      {
+        "characters": "this is not a article",
+        "start": 0,
+        "end": 21,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      },
+      {
+        "characters": "I M  DEVELOPER",
+        "start": 0,
+        "end": 14,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      },
+      {
+        "characters": "this is a article",
+        "start": 0,
+        "end": 17,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      },
+      {
+        "characters": "SD",
+        "start": 0,
+        "end": 2,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      }
+    ]
+  },
+  {
+    "name": "Scene-1",
+    "textNodes": [
+      {
+        "characters": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod vero sint possimus, ex laboriosam quas, natus dolor, amet velit dolorem aperiam doloribus fuga quasi odit corrupti officia corporis eligendi culpa.",
+        "start": 0,
+        "end": 209,
+        "fontSize": 32,
+        "fontName": { "family": "Inter", "style": "Regular" },
+        "fontWeight": 400
+      },
+      {
+        "characters": "Hello World",
+        "start": 0,
+        "end": 11,
+        "fontSize": 64,
+        "fontName": { "family": "Inconsolata", "style": "Bold" },
+        "fontWeight": 700
+      },
+      {
+        "characters": "this is not a article",
+        "start": 0,
+        "end": 21,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      },
+      {
+        "characters": "I M FINE",
+        "start": 0,
+        "end": 8,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      },
+      {
+        "characters": "this is a article",
+        "start": 0,
+        "end": 17,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      },
+      {
+        "characters": "CJ",
+        "start": 0,
+        "end": 2,
+        "fontSize": 40,
+        "fontName": { "family": "Inter", "style": "Medium Italic" },
+        "fontWeight": 500
+      }
+    ]
+  },
+  { "name": "Scene-3", "textNodes": [] }
+]

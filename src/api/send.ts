@@ -1,19 +1,19 @@
-type MessageType = "update";
-
 function send(message: string) {
   figma.ui.postMessage(message);
 }
 
-function update(targetId: string, value: string) {
+function updateUI(targetId: string, value: string) {
   const message = JSON.stringify({ type: "update", targetId, value });
   send(message);
 }
 
-function bind(type: MessageType) {
-  switch (type) {
-    case "update":
-      return update;
-  }
+function useMessenger() {
+  return {
+    send,
+    updateUI,
+  };
 }
 
-export default bind;
+const messenger = useMessenger();
+
+export default messenger;
