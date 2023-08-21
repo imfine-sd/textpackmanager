@@ -8,14 +8,34 @@
     <h3>EXPORT Options</h3>
     <button id="export_file">EXPORT</button>
   </section>
+  <hr />
+  <section id="text_section">
+    <h3>Page Text Map</h3>
+    <button id="get_text_data">Get Map</button>
+  </section>
 </main>
 
 <script>
   /**FIGMA PLUGIN **/
-  function send(method, param) {
+  function sendMessage(method, param) {
     const pluginMessage = JSON.stringify({ method, param });
     const message = { pluginMessage };
     parent.postMessage(message, "*");
+  }
+  function getTextData(query) {
+    sendMessage("getTextData", query);
+  }
+  function importFile(param) {
+    sendMessage("import", param);
+  }
+  function exportFile(param) {
+    sendMessage("export", param);
+  }
+  function selectNode(id) {
+    sendMessage("select", id);
+  }
+  function ChangeNode(id) {
+    sendMessage("change", id);
   }
 
   onmessage = (event) => {
@@ -40,21 +60,32 @@
           ul.id = scene.name;
           scene.textNodes.forEach((textNode) => {
             const li = document.createElement("li");
-            ul.appendChild(li);
+            li.id = textNode.id;
             li.innerText = textNode.characters;
+            li.onclick = () => {};
+            ul.appendChild(li);
           });
         });
       }
     }
   };
+
+  /** Get Text Data FUNCTION**/
+  const getTextDataButton = document.getElementById("get_text_data");
+
+  getTextDataButton.onclick = () => {
+    const message = "getTexts";
+    getTextData();
+  };
+
   /**IMPORT File FUNCTION**/
 
   /**EXPORT File FUNCTION**/
   const exportButton = document.getElementById("export_file");
+
   exportButton.onclick = () => {
-    const method = "export";
     const message = "hello world";
-    send(method, message);
+    exportFile(method, message);
   };
 </script>
 

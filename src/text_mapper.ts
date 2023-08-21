@@ -8,62 +8,32 @@ type SceneData = {
   textNodes: Pick<any, any>[];
 };
 
-const getIsTextNode = (c: SceneNode): boolean => c.type === "TEXT";
-const getIsNotTextNode = (c: SceneNode): boolean => c.type !== "TEXT";
-
-// type TextData = {
-//   characters: string;
-//   fontName: FontName | typeof figma.mixed;
-//   fontSize: number | typeof figma.mixed;
-//   fontWeight: number | typeof figma.mixed;
-//   fills: readonly Paint[] | typeof figma.mixed;
-// };
-
-// const textNodeToData = (textNode: TextNode) => {
-//   const { id, name, characters, fontName, fontSize, fontWeight, fills } =
-//     textNode;
-//   let data: TextData[] = [];
-//   if (
-//     typeof fontName === "string" &&
-//     typeof fontSize === "number" &&
-//     typeof fontWeight === "number" &&
-//     typeof fills !== "symbol"
-//   ) {
-//     const newText = {
-//       characters,
-//       fontName,
-//       fontSize,
-//       fontWeight,
-//       fills,
-//     };
-//     data = [newText];
-//   } else {
-//     data = textNode.getStyledTextSegments([
-//       "fontName",
-//       "fontSize",
-//       "fontWeight",
-//       "fills",
-//     ]);
-//   }
-
-//   return `${name} : ${characters}`;
-// };
-
 function useTextMapper() {
+  /**STATE MANAGEMENT**/
   let sceneDatas: SceneData[] = [];
+
+  function setSceneDatas(value: SceneData[]) {
+    sceneDatas = value;
+  }
+
   /**
-   * **On Export**
+   * **On GetTextData**
    *
-   * on export the text contents
+   * on 'getTextData' method called.
    */
-  const onExport = () => {
+  const onGetTextData = () => {
+    /*get current page's children */
     const childrens = figma.currentPage.children as Scene[];
 
-    sceneDatas = childrens.map((child) => ({
+    /*reset & set base Data Structures
+    depend on number of frame groups*/
+    const groupByName = childrens.map((child) => ({
       name: child.name,
       textNodes: [],
     }));
+    setSceneDatas(groupByName);
 
+    /*set Every Scene's TextNode[] */
     childrens.forEach((child) => {
       flatTextNodes(child.children as Scene[], child.name);
     });
@@ -74,7 +44,7 @@ function useTextMapper() {
 
   return {
     sceneDatas,
-    onExport,
+    onGetTextData,
   };
 
   function flatTextNodes(children: Scene[], name: string) {

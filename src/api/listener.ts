@@ -1,23 +1,32 @@
 import useTextMapper from "../text_mapper";
 
-interface ImportData {
+interface GetTextData {
+  method: "getTextData";
+  param: string;
+}
+interface ImportFile {
   method: "import";
   param: string;
 }
-interface ExportData {
+interface ExportFile {
   method: "export";
   param: string;
 }
-interface SelectData {
+interface SelectNode {
   method: "select";
   param: SceneNode;
 }
-interface ChangeData {
+interface ChangeNode {
   method: "change";
   param: SceneNode;
 }
 
-type PluginData = ImportData | ExportData | SelectData | ChangeData;
+type PluginData =
+  | GetTextData
+  | ImportFile
+  | ExportFile
+  | SelectNode
+  | ChangeNode;
 
 function pluginDataHandler(data: PluginData) {
   const { method, param } = data;
@@ -26,11 +35,13 @@ function pluginDataHandler(data: PluginData) {
   console.log(data);
 
   switch (method) {
+    case "getTextData": {
+      textMapper.onGetTextData();
+    }
     case "import": {
       //TODO : import xlsx or json
     }
     case "export": {
-      textMapper.onExport();
       //TODO : export xlsx or json
     }
     case "change": {
