@@ -2,14 +2,11 @@
   "name": "Text Pack Manager",
   "id": "1272474996245685318",
   "api": "1.0.0",
+  "editorType": ["figma", "figjam", "dev"],
+  "permissions": [],
   "main": "dist/code.js",
+  "ui": "dist/index.html",
   "capabilities": ["inspect"],
-  "enableProposedApi": false,
-  "editorType": ["figma", "dev"],
-  "ui": {
-    "page": "./src/router/pages/page.html",
-    "frame": "./src/router/pages/frame.html"
-  },
   "networkAccess": {
     "allowedDomains": ["none"]
   }

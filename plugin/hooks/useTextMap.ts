@@ -1,5 +1,5 @@
-import messenger from "./api/send";
-import { textNodeToData } from "./api/textNode";
+import messenger from "../api/send";
+import { textNodeToData } from "../api/textNode";
 
 type Scene = SceneNode & ChildrenMixin;
 

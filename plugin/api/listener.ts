@@ -1,4 +1,4 @@
-import useTextMapper from "../text_mapper";
+import useTextMapper from "../hooks/useTextMap";
 
 interface GetTextData {
   method: "getTextData";
