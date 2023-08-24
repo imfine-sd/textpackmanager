@@ -1,24 +1,24 @@
 import useTextMapper from "../hooks/useTextMap";
 
 interface GetTextData {
-  method: "getTextData";
-  param: string;
+  type: "getTextData";
+  value: string;
 }
 interface ImportFile {
-  method: "import";
-  param: string;
+  type: "import";
+  value: string;
 }
 interface ExportFile {
-  method: "export";
-  param: string;
+  type: "export";
+  value: string;
 }
 interface SelectNode {
-  method: "select";
-  param: SceneNode;
+  type: "select";
+  value: SceneNode;
 }
 interface ChangeNode {
-  method: "change";
-  param: SceneNode;
+  type: "change";
+  value: SceneNode;
 }
 
 type PluginData =
@@ -28,13 +28,13 @@ type PluginData =
   | SelectNode
   | ChangeNode;
 
-function pluginDataHandler(data: PluginData) {
-  const { method, param } = data;
+function uiMessageListener(data: PluginData) {
+  const { type, value } = data;
   const textMapper = useTextMapper();
 
   console.log(data);
 
-  switch (method) {
+  switch (type) {
     case "getTextData": {
       textMapper.onGetTextData();
     }
@@ -44,17 +44,17 @@ function pluginDataHandler(data: PluginData) {
     case "export": {
       //TODO : export xlsx or json
     }
+    case "select": {
+    }
     case "change": {
       //TODO : change node(param)
-    }
-    case "select": {
     }
   }
 }
 
 const onUImessage: MessageEventHandler = (pluginMessage): void => {
   const pluginData: PluginData = JSON.parse(pluginMessage);
-  pluginDataHandler(pluginData);
+  uiMessageListener(pluginData);
 };
 
 export default onUImessage;

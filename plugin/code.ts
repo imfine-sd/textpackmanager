@@ -1,21 +1,24 @@
-figma.showUI(__html__, { themeColors: true, height: 300 });
+import onUImessage from "./api/ui_listener";
+import onSelectionChange from "./handlers/onSelectionChange";
 
-figma.ui.onmessage = (msg) => {
-  console.log(msg);
-  if (msg.type === "create-rectangles") {
-    const nodes = [];
+figma.showUI(__html__, { themeColors: true, width: 500, height: 500 });
 
-    for (let i = 0; i < msg.count; i++) {
-      const rect = figma.createRectangle();
-      rect.x = i * 150;
-      rect.fills = [{ type: "SOLID", color: { r: 1, g: 0.5, b: 0 } }];
-      figma.currentPage.appendChild(rect);
-      nodes.push(rect);
-    }
+figma.ui.onmessage = onUImessage;
+figma.on("selectionchange", onSelectionChange);
 
-    figma.currentPage.selection = nodes;
-    figma.viewport.scrollAndZoomIntoView(nodes);
-  }
+// if (msg.type === "create-rectangles") {
+//   const nodes = [];
 
-  figma.closePlugin();
-};
+//   for (let i = 0; i < msg.count; i++) {
+//     const rect = figma.createRectangle();
+//     rect.x = i * 150;
+//     rect.fills = [{ type: "SOLID", color: { r: 1, g: 0.5, b: 0 } }];
+//     figma.currentPage.appendChild(rect);
+//     nodes.push(rect);
+//   }
+
+//   figma.currentPage.selection = nodes;
+//   figma.viewport.scrollAndZoomIntoView(nodes);
+// }
+
+// figma.closePlugin();
