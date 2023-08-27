@@ -1,34 +1,6 @@
 import useTextMapper from "../hooks/useTextMap";
 
-interface GetTextData {
-  type: "getTextData";
-  value: string;
-}
-interface ImportFile {
-  type: "import";
-  value: string;
-}
-interface ExportFile {
-  type: "export";
-  value: string;
-}
-interface SelectNode {
-  type: "select";
-  value: SceneNode;
-}
-interface ChangeNode {
-  type: "change";
-  value: SceneNode;
-}
-
-type PluginData =
-  | GetTextData
-  | ImportFile
-  | ExportFile
-  | SelectNode
-  | ChangeNode;
-
-function uiMessageListener(data: PluginData) {
+function uiMessageListener(data: UiMessage) {
   const { type, value } = data;
   const textMapper = useTextMapper();
 
@@ -52,9 +24,9 @@ function uiMessageListener(data: PluginData) {
   }
 }
 
-const onUImessage: MessageEventHandler = (pluginMessage): void => {
-  const pluginData: PluginData = JSON.parse(pluginMessage);
+const onUimessage: MessageEventHandler = (pluginMessage): void => {
+  const pluginData: UiMessage = JSON.parse(pluginMessage);
   uiMessageListener(pluginData);
 };
 
-export default onUImessage;
+export default onUimessage;

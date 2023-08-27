@@ -1,10 +1,7 @@
-interface UpdateUi {
-  type: "updateUI";
-  targetId: string;
-  value: string;
-}
+import store from "../context";
+import { setMode } from "../context/mode";
 
-type PluginMessage = UpdateUi;
+const { dispatch } = store;
 
 function pluginMessageListener(pluginMessage: PluginMessage) {
   const { type, value } = pluginMessage;
@@ -12,14 +9,24 @@ function pluginMessageListener(pluginMessage: PluginMessage) {
   console.log(pluginMessage);
 
   switch (type) {
-    case "updateUI": {
+    case "navigateUi": {
+      dispatch(setMode(value));
+    }
+    case "updateUi": {
     }
   }
 }
 
-const onPluginMessage: MessageEventHandler = (pluginMessage): void => {
-  const pluginData: PluginMessage = JSON.parse(pluginMessage);
-  pluginMessageListener(pluginData);
+/**
+ * on event of plug-in message received
+ * @param event MessageEvent
+ */
+const onPluginMessage = (event: MessageEvent): void => {
+  const {
+    data: { pluginMessage },
+  } = event;
+  //handelr message
+  pluginMessageListener(pluginMessage);
 };
 
 export default onPluginMessage;

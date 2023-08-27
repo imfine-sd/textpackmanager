@@ -2,7 +2,7 @@ type Page = "page" | "frame";
 
 function navigate(page: Page) {
   const path = __uiFiles__[page];
-  figma.showUI(path, { themeColors: true });
+  figma.showUi(path, { themeColors: true });
 }
 
 function useNavigator() {

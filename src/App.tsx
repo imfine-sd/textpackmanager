@@ -1,13 +1,14 @@
-import React, { useRef } from "react";
-import "./App.css";
+import React from "react";
 import { Provider } from "react-redux";
 import store from "./context";
-import Home from "./router/Home";
+import Router from "./router/Router";
+
+import "./App.css";
 
 function App() {
   return (
     <Provider store={store}>
-      <Home />
+      <Router />
     </Provider>
   );
 }

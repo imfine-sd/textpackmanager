@@ -1,11 +1,18 @@
-import { navigateUI } from "../api/toUi";
+import { changeUiMode } from "../api/toUi";
 
 const onSelectionChange = () => {
   const selection = figma.currentPage.selection;
-  if (selection.length > 0) {
-    navigateUI("selection");
+  // No Selcection
+  if (selection.length === 0) {
+    changeUiMode("Page");
+
+    // At least, Selection has one node
   } else {
-    navigateUI("page");
+    if (selection.length === 1 && selection[0].type === "TEXT") {
+      changeUiMode("Text");
+    } else {
+      changeUiMode("Group");
+    }
   }
 };
 

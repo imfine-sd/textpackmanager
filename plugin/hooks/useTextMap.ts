@@ -1,4 +1,4 @@
-import { updateUI } from "../api/toUi";
+import { updateUi } from "../api/toUi";
 import { textNodeToData } from "../textNode";
 
 type Scene = SceneNode & ChildrenMixin;
@@ -39,7 +39,7 @@ function useTextMapper() {
     });
 
     const message = JSON.stringify(sceneDatas);
-    updateUI("table", message);
+    updateUi("table", message);
   };
 
   return {
