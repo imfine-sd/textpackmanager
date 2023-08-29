@@ -1,8 +1,6 @@
 function uiMessageListener(data: UiMessage) {
   const { type, value } = data;
 
-  console.log(data);
-
   switch (type) {
     case "getTextData": {
     }

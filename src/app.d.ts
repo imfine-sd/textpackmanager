@@ -5,26 +5,28 @@ interface NavigateUi {
   value: Mode;
 }
 
-type TextData = {
+interface TextData {
+  characters: string;
+  start: number;
+  end: number;
+  fontSize: number;
+  fontName: FontName;
+  fontWeight: number;
+  fills: Paint[];
+  id: string;
   name: string;
-  textNodes: TextNode[];
-  // textNodes: Pick<
-  //   StyledTextSegment,
-  //   | "characters"
-  //   | "start"
-  //   | "end"
-  //   | "fontSize"
-  //   | "fontName"
-  //   | "fontWeight"
-  //   | "fills"
-  // >[];
+}
+
+type EverySceneTextsData = {
+  name: string;
+  textDatas: TextData[];
 };
 
 type UpdateUiTarget = "allText" | "selectedGroup" | "selectedText";
 
 interface UpdateAllText {
   target: "allText";
-  data: TextData[];
+  data: EverySceneTextsData[];
 }
 
 interface UpdateGroup {

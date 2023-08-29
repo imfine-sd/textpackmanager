@@ -1,8 +1,5 @@
 import { changeUiMode, updateUi } from "../api/toUi";
-import useTextFinder from "../hooks/useTextNode";
-
-const selection = figma.currentPage.selection;
-const textFinder = useTextFinder();
+import textFinder from "../util/textFinder";
 
 const onNoSelection = () => {
   const allText = textFinder.getAllText();
@@ -11,6 +8,8 @@ const onNoSelection = () => {
 };
 
 const onSelectionChange = () => {
+  const selection = figma.currentPage.selection;
+
   selection.length === 0
     ? // No Selcection
       onNoSelection()

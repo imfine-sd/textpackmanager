@@ -1,21 +1,28 @@
 type Scene = SceneNode & ChildrenMixin;
 
-// function textNodeToData(node: TextNode) {
-//   const textData = node.getStyledTextSegments([
-//     "fontName",
-//     "fontSize",
-//     "fontWeight",
-//     "fills",
-//   ]);
+function textNodeToData(node: TextNode) {
+  const { id, name } = node;
+  const textDatas = node.getStyledTextSegments([
+    "fontName",
+    "fontSize",
+    "fontWeight",
+    "fills",
+  ]);
 
-//   return textData;
-// }
+  const data = textDatas.map((data) => ({
+    id,
+    name,
+    ...data,
+  }));
+
+  return data;
+}
 
 function useTextFinder() {
   /**STATE MANAGEMENT**/
-  let allText: TextData[] = [];
+  let allText: EverySceneTextsData[] = [];
 
-  function setAllText(value: TextData[]) {
+  function setAllText(value: EverySceneTextsData[]) {
     allText = value;
   }
 
@@ -25,9 +32,9 @@ function useTextFinder() {
 
     /*reset & set base Data Structures
     depend on number of frame groups*/
-    const groupByName = childrens.map(({ name }) => ({
+    const groupByName: EverySceneTextsData[] = childrens.map(({ name }) => ({
       name,
-      textNodes: [],
+      textDatas: [] as unknown as EverySceneTextsData["textDatas"],
     }));
 
     setAllText(groupByName);
@@ -50,8 +57,8 @@ function useTextFinder() {
       const isText = child.type === "TEXT";
       if (isText) {
         const index = allText.findIndex((data) => data.name === name);
-        // const textData = textNodeToData(child);
-        allText[index].textNodes.push(child);
+        const textData = textNodeToData(child);
+        allText[index].textDatas.push(...textData);
       } else {
         if (child.children === undefined) return;
         flatTextNodes(child.children as Scene[], name);
@@ -60,4 +67,6 @@ function useTextFinder() {
   }
 }
 
-export default useTextFinder;
+const textFinder = useTextFinder();
+
+export default textFinder;

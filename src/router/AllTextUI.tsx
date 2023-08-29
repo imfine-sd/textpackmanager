@@ -1,18 +1,21 @@
 import React from "react";
 import { useAppSelector } from "../context";
-import { allTextSelector } from "../context/allText";
+import { everySceneTextsSelector } from "../context/allTextsOnScene";
 
-function AllTextUI() {
-  const allText = useAppSelector(allTextSelector);
+function AllTextsonSceneUI() {
+  const everySceneTextsData = useAppSelector(everySceneTextsSelector);
 
   return (
     <main>
-      {allText.map((text, textIndex) => (
-        <section key={text.name + textIndex}>
-          <h1>{text.name}</h1>
+      {everySceneTextsData.map((scene, sceneIndex) => (
+        <section key={scene.name + sceneIndex}>
+          <h1>{scene.name}</h1>
           <ul>
-            {text.textNodes.map((textNode, nodeIndex) => (
-              <li key={`${textIndex}-${nodeIndex}`}>{textNode.name}</li>
+            {scene.textDatas.map((data, dataIndex) => (
+              <li key={data.id}>
+                <h4>{false ? data.name : `${scene.name}-${dataIndex + 1}`}</h4>
+                <p>{data.characters}</p>
+              </li>
             ))}
           </ul>
         </section>
@@ -21,4 +24,4 @@ function AllTextUI() {
   );
 }
 
-export default AllTextUI;
+export default AllTextsonSceneUI;
