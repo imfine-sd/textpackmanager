@@ -1,14 +1,47 @@
-type Mode = "Page" | "Group" | "Text";
+type Mode = "Page" | "Group" | "Text" | "NoText";
 
 interface NavigateUi {
   type: "navigateUi";
   value: Mode;
 }
 
+type TextData = {
+  name: string;
+  textNodes: TextNode[];
+  // textNodes: Pick<
+  //   StyledTextSegment,
+  //   | "characters"
+  //   | "start"
+  //   | "end"
+  //   | "fontSize"
+  //   | "fontName"
+  //   | "fontWeight"
+  //   | "fills"
+  // >[];
+};
+
+type UpdateUiTarget = "allText" | "selectedGroup" | "selectedText";
+
+interface UpdateAllText {
+  target: "allText";
+  data: TextData[];
+}
+
+interface UpdateGroup {
+  target: "selectedGroup";
+  data: TextData[];
+}
+
+interface UpdateText {
+  target: "selectedText";
+  data: TextData;
+}
+
+type UpdateUiValue = UpdateAllText | UpdateGroup | UpdateText;
+
 interface UpdateUi {
   type: "updateUi";
-  targetId: string;
-  value: string;
+  value: UpdateUiValue;
 }
 
 type PluginMessage = NavigateUi | UpdateUi;

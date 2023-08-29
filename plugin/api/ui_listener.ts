@@ -1,14 +1,10 @@
-import useTextMapper from "../hooks/useTextMap";
-
 function uiMessageListener(data: UiMessage) {
   const { type, value } = data;
-  const textMapper = useTextMapper();
 
   console.log(data);
 
   switch (type) {
     case "getTextData": {
-      textMapper.onGetTextData();
     }
     case "import": {
       //TODO : import xlsx or json

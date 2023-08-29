@@ -7,7 +7,10 @@ export function changeUiMode(value: Mode) {
   toUi(message);
 }
 
-export function updateUi(targetId: string, value: string) {
-  const message: UpdateUi = { type: "updateUi", targetId, value };
+export function updateUi(value: UpdateUiValue) {
+  const message: UpdateUi = {
+    type: "updateUi",
+    value,
+  };
   toUi(message);
 }

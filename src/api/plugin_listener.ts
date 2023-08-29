@@ -1,19 +1,33 @@
 import store from "../context";
+import { setAllText } from "../context/allText";
 import { setMode } from "../context/mode";
+import { setSelectedGroup } from "../context/selectedGroup";
+import { setSelectedText } from "../context/selectedText";
 
 const { dispatch } = store;
 
 function pluginMessageListener(pluginMessage: PluginMessage) {
   const { type, value } = pluginMessage;
-
-  console.log(pluginMessage);
-
   switch (type) {
-    case "navigateUi": {
+    case "navigateUi":
       dispatch(setMode(value));
-    }
-    case "updateUi": {
-    }
+      break;
+
+    case "updateUi":
+      const { target, data } = value;
+      switch (target) {
+        case "allText":
+          dispatch(setAllText(data));
+          break;
+
+        case "selectedGroup":
+          dispatch(setSelectedGroup(data));
+          break;
+
+        case "selectedText":
+          dispatch(setSelectedText(data));
+          break;
+      }
   }
 }
 
