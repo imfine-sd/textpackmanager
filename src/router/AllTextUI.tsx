@@ -8,12 +8,12 @@ function AllTextsonSceneUI() {
   return (
     <main>
       {everySceneTextsData.map((scene, sceneIndex) => (
-        <section key={scene.name + sceneIndex}>
+        <section key={scene.name}>
           <h1>{scene.name}</h1>
           <ul>
             {scene.textDatas.map((data, dataIndex) => (
               <li key={data.id}>
-                <h4>{false ? data.name : `${scene.name}-${dataIndex + 1}`}</h4>
+                <h4>{true ? data.name : `${scene.name}-${dataIndex + 1}`}</h4>
                 <p>{data.characters}</p>
               </li>
             ))}

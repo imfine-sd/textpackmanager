@@ -31,4 +31,6 @@ function useNavigator() {
   };
 }
 
-export default useNavigator;
+const navigator = useNavigator();
+
+export default navigator;

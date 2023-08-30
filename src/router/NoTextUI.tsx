@@ -1,7 +1,7 @@
 import React from "react";
 
 function NoTextUI() {
-  return <main>Not A Text Node</main>;
+  return <main>Select "Text" or Something that contained it</main>;
 }
 
 export default NoTextUI;
