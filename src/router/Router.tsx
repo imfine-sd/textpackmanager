@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../context";
 import { modeSelector } from "../context/mode";
-import AllTextUI from "./AllTextUI";
+import AllTextUI from "./MainUI";
 import GroupUI from "./GroupUI";
 import TextUI from "./TextUI";
 import NoTextUI from "./NoTextUI";

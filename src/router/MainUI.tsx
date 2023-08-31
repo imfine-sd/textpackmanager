@@ -1,14 +1,16 @@
 import React from "react";
 import { useAppSelector } from "../context";
 import { everySceneTextsSelector } from "../context/allTextsOnScene";
+import SearchEngine from "../components/SearchEngine";
 
-function AllTextsonSceneUI() {
+function MainUI() {
   const everySceneTextsData = useAppSelector(everySceneTextsSelector);
 
   return (
     <main>
+      <SearchEngine />
       {everySceneTextsData.map((scene, sceneIndex) => (
-        <section key={scene.name}>
+        <article key={scene.name}>
           <h1>{scene.name}</h1>
           <ul>
             {scene.textDatas.map((data, dataIndex) => (
@@ -18,10 +20,10 @@ function AllTextsonSceneUI() {
               </li>
             ))}
           </ul>
-        </section>
+        </article>
       ))}
     </main>
   );
 }
 
-export default AllTextsonSceneUI;
+export default MainUI;
