@@ -1,5 +1,5 @@
 import store from "../context";
-import { setEverySceneTexts } from "../context/allTextsOnScene";
+import { setQueriedTexts } from "../context/queriedTexts";
 import { setMode } from "../context/mode";
 import { setSelectedGroup } from "../context/selectedGroup";
 import { setSelectedText } from "../context/selectedText";
@@ -17,7 +17,7 @@ function pluginMessageListener(pluginMessage: PluginMessage) {
       const { target, data } = value;
       switch (target) {
         case "allText":
-          dispatch(setEverySceneTexts(data));
+          dispatch(setQueriedTexts(data));
           break;
 
         case "selectedGroup":

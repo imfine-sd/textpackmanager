@@ -17,7 +17,8 @@ interface TextData {
   name: string;
 }
 
-type EverySceneTextsData = {
+type SceneTexts = {
+  id: string;
   name: string;
   textDatas: TextData[];
 };
@@ -26,7 +27,7 @@ type UpdateUiTarget = "allText" | "selectedGroup" | "selectedText";
 
 interface UpdateAllText {
   target: "allText";
-  data: EverySceneTextsData[];
+  data: SceneTexts[];
 }
 
 interface UpdateGroup {

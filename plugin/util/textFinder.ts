@@ -20,9 +20,9 @@ function textNodeToData(node: TextNode) {
 
 function useTextFinder() {
   /**STATE MANAGEMENT**/
-  let allText: EverySceneTextsData[] = [];
+  let allText: SceneTexts[] = [];
 
-  function setAllText(value: EverySceneTextsData[]) {
+  function setAllText(value: SceneTexts[]) {
     allText = value;
   }
 
@@ -32,9 +32,10 @@ function useTextFinder() {
 
     /*reset & set base Data Structures
     depend on number of frame groups*/
-    const groupByName: EverySceneTextsData[] = childrens.map(({ name }) => ({
+    const groupByName: SceneTexts[] = childrens.map(({ id, name }) => ({
+      id,
       name,
-      textDatas: [] as unknown as EverySceneTextsData["textDatas"],
+      textDatas: [] as unknown as SceneTexts["textDatas"],
     }));
 
     setAllText(groupByName);
