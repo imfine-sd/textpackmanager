@@ -7,12 +7,8 @@ function navigate(page: Page) {
 
 function useNavigator() {
   const onSelectionChange = () => {
-    const selection = figma.currentPage.selection;
-    if (selection.length > 0) {
-      navigate("frame");
-    } else {
-      navigate("page");
-    }
+    // const selection = figma.currentPage.selection;
+    navigate("page");
   };
 
   // const onCurrentPageChange = () => {

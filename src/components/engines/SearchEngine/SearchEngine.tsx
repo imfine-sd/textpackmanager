@@ -1,6 +1,6 @@
 import React from "react";
-import { Text } from "../base/style/input";
-import SearchedList from "../core/SearchedList";
+import { Text } from "../../base/style/input";
+import SearchedList from "./list/SearchedList";
 
 interface SeacrchEngineAttributes {}
 

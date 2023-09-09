@@ -11,27 +11,28 @@ const onSelectionChange = () => {
   const selection = figma.currentPage.selection;
 
   // No Selcection
-  if (selection.length === 0) return onNoSelection();
+  onNoSelection();
+  // if (selection.length === 0) return;
 
-  // Selection includes just one node
-  if (selection.length === 1) {
-    switch (selection[0].type) {
-      case "SECTION":
-      case "FRAME":
-      case "GROUP":
-      case "COMPONENT_SET":
-        return changeUiMode("Group");
-      case "TEXT":
-        return changeUiMode("Text");
-      default:
-        return changeUiMode("NoText");
-    }
-  }
+  // // Selection includes just one node
+  // if (selection.length === 1) {
+  //   switch (selection[0].type) {
+  //     case "SECTION":
+  //     case "FRAME":
+  //     case "GROUP":
+  //     case "COMPONENT_SET":
+  //       return changeUiMode("Group");
+  //     case "TEXT":
+  //       return changeUiMode("Text");
+  //     default:
+  //       return changeUiMode("NoText");
+  //   }
+  // }
 
-  //  Selection includes multiple nodes
-  if (selection.length > 1) {
-    console.log(selection);
-  }
+  // //  Selection includes multiple nodes
+  // if (selection.length > 1) {
+  //   console.log(selection);
+  // }
 };
 
 export default onSelectionChange;
