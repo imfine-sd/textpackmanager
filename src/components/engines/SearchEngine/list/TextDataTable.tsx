@@ -2,21 +2,22 @@ import React from "react";
 import { styled } from "styled-components";
 
 const TableContainer = styled.details`
-  padding-left: 20px;
-  border: 1px solid transparent;
-  &:hover {
+  /* padding-left: 20px; */
+  &:hover > summary {
     border: 1px solid var(--color-border);
   }
-  &[open] {
+  &[open] > summary {
     background-color: var(--color-bg-brand);
   }
   & > summary {
     list-style: none;
     padding: 8px;
-    padding-left: 16px;
+    padding-left: 26px;
     display: flex;
     font-size: 16px;
     font-weight: 400;
+    border: 1px solid transparent;
+
     & input[type="checkbox"] {
       margin-right: 16px;
       border: none;
@@ -26,14 +27,14 @@ const TableContainer = styled.details`
 `;
 
 const Table = styled.table`
-  margin-left: 16px;
+  margin-left: 26px;
   padding: 8px 12px;
   font-size: 14px;
   & * {
   }
   & tr {
     padding: 3px 6px;
-    background-color: var();
+    background-color: var(--color-bg);
   }
   & th.itemName {
     width: 30px;
@@ -68,12 +69,25 @@ function TextDataTable({ data, index }: TextDataTableAttributes) {
           <td>{data.characters}</td>
         </tr>
         <tr>
-          <th>font-family</th>
-          <td>{data.fontName.family}</td>
+          <th rowSpan={5}>style</th>
+          <th>color</th>
+          <td>TBD</td>
+        </tr>
+        <tr>
+          <th>font-size</th>
+          <td>{data.fontSize}px</td>
         </tr>
         <tr>
           <th>font-style</th>
           <td>{data.fontName.style}</td>
+        </tr>
+        <tr>
+          <th>font-family</th>
+          <td>{data.fontName.family}</td>
+        </tr>
+        <tr>
+          <th>font-weight</th>
+          <td>{data.fontWeight}</td>
         </tr>
       </Table>
     </TableContainer>

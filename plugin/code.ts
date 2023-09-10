@@ -2,7 +2,7 @@ import onUimessage from "./api/ui_listener";
 import onSelectionChange from "./handlers/onSelectionChange";
 
 // SHOW UI
-figma.showUI(__html__, { themeColors: true, width: 500 });
+figma.showUI(__html__, { themeColors: true, width: 500, height: 800 });
 
 // Skip over invisible nodes and their descendants inside instances
 // for faster performance.
