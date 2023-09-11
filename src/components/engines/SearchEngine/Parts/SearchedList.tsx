@@ -2,7 +2,7 @@ import React from "react";
 import { useAppSelector } from "../../../../context";
 import { queriedTextDataSelector } from "../../../../context/queriedTexts";
 import { SceneList, Scene, Details, Article } from "./SeachedListStyled";
-import TextDataTable from "./TextDataTable";
+import TextDataTable from "../../../base/TextDataTable";
 
 type SearchedListAttributes = {};
 //TODO: Detail Component 화

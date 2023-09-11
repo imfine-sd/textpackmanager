@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from ".";
 
 interface SelectedTextSlice {
-  value?: TextData;
+  value?: TextNode;
 }
 
 const initialState: SelectedTextSlice = {};

@@ -53,7 +53,7 @@ const Table = styled.table`
 
 type TextDataTableAttributes = {
   data: TextData;
-  index: number;
+  index?: number;
 };
 
 function TextDataTable({ data, index }: TextDataTableAttributes) {
@@ -61,7 +61,7 @@ function TextDataTable({ data, index }: TextDataTableAttributes) {
     <TableContainer>
       <summary>
         <input type="checkbox" name={data.id} />
-        {`${index + 1}`}
+        {index ? `${index + 1}` : data.name}
       </summary>
       <Table key={data.id}>
         <tr>

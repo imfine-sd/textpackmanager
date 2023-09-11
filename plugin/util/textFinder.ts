@@ -1,5 +1,3 @@
-type Scene = SceneNode & ChildrenMixin;
-
 function textNodeToData(node: TextNode) {
   const { id, name } = node;
   const textDatas = node.getStyledTextSegments([
@@ -20,22 +18,22 @@ function textNodeToData(node: TextNode) {
 
 function useTextFinder() {
   /**STATE MANAGEMENT**/
-  let allText: SceneTexts[] = [];
+  let allText: TextsNode[] = [];
 
-  function setAllText(value: SceneTexts[]) {
+  function setAllText(value: TextsNode[]) {
     allText = value;
   }
 
-  const getAllText = () => {
+  const getAllText = (): TextsNode[] => {
     /*get current page's children */
     const childrens = figma.currentPage.children as Scene[];
 
     /*reset & set base Data Structures
     depend on number of frame groups*/
-    const groupByName: SceneTexts[] = childrens.map(({ id, name }) => ({
+    const groupByName: TextsNode[] = childrens.map(({ id, name }) => ({
       id,
       name,
-      textDatas: [] as unknown as SceneTexts["textDatas"],
+      textDatas: [] as unknown as TextsNode["textDatas"],
     }));
 
     setAllText(groupByName);
@@ -48,8 +46,26 @@ function useTextFinder() {
     return allText;
   };
 
+  /*get Selected Group texts */
+  const getSelectedGroup = (scene: Scene): TextsNode => {
+    let selectedTextData: TextsNode = {
+      id: scene.id,
+      name: scene.name,
+      textDatas: [],
+    };
+
+    flatTextNode(selectedTextData, scene.children as Scene[]);
+
+    return selectedTextData;
+  };
+
+  /*get Selected Text */
+  const getSelectedText = (scene: TextNode) => {};
+
   return {
     getAllText,
+    getSelectedGroup,
+    getSelectedText,
   };
 
   function flatTextNodes(children: Scene[], name: string) {
@@ -63,6 +79,19 @@ function useTextFinder() {
       } else {
         if (child.children === undefined) return;
         flatTextNodes(child.children as Scene[], name);
+      }
+    });
+  }
+  function flatTextNode(targetData: TextsNode, children: Scene[]) {
+    if (children.length === 0) return;
+    children.forEach((child) => {
+      const isText = child.type === "TEXT";
+      if (isText) {
+        const textData = textNodeToData(child);
+        targetData.textDatas.push(...textData);
+      } else {
+        if (child.children === undefined) return;
+        flatTextNode(targetData, child.children as Scene[]);
       }
     });
   }

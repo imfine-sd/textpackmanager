@@ -1,6 +1,5 @@
 import store from "../context";
 import { setQueriedTexts } from "../context/queriedTexts";
-import { setMode } from "../context/mode";
 import { setSelectedGroup } from "../context/selectedGroup";
 import { setSelectedText } from "../context/selectedText";
 
@@ -9,10 +8,6 @@ const { dispatch } = store;
 function pluginMessageListener(pluginMessage: PluginMessage) {
   const { type, value } = pluginMessage;
   switch (type) {
-    case "navigateUi":
-      dispatch(setMode(value));
-      break;
-
     case "updateUi":
       const { target, data } = value;
       switch (target) {

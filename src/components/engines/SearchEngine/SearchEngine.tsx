@@ -1,15 +1,14 @@
 import React from "react";
+import { Section } from "../../base/style/box";
 import { Text } from "../../base/style/input";
-import SearchedList from "./list/SearchedList";
+import SearchedList from "./Parts/SearchedList";
 
-interface SeacrchEngineAttributes {}
-
-function SearchEngine({ ...attrs }: SeacrchEngineAttributes) {
+function SearchEngine() {
   return (
-    <section>
+    <Section>
       <Text type="text" />
       <SearchedList />
-    </section>
+    </Section>
   );
 }
 

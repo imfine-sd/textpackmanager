@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from ".";
 
 interface QueriedTextDataSlice {
-  value: SceneTexts[];
+  value: TextsNode[];
 }
 
 const initialState: QueriedTextDataSlice = { value: [] };

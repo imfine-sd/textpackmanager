@@ -1,13 +1,12 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 //Contexts
-import mode from "./mode";
 import queriedTextData from "./queriedTexts";
 import selectedGroup from "./selectedGroup";
 import selectedText from "./selectedText";
 
 const store = configureStore({
-  reducer: { mode, queriedTextData, selectedGroup, selectedText },
+  reducer: { queriedTextData, selectedGroup, selectedText },
 });
 
 type AppDispatch = typeof store.dispatch;

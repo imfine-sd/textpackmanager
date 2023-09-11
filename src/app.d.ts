@@ -1,9 +1,6 @@
-type Mode = "Page" | "Group" | "Text" | "NoText";
+type Scene = SceneNode & ChildrenMixin;
 
-interface NavigateUi {
-  type: "navigateUi";
-  value: Mode;
-}
+type Mode = "Page" | "Group" | "Text" | "NoText";
 
 interface TextData {
   characters: string;
@@ -17,7 +14,7 @@ interface TextData {
   name: string;
 }
 
-type SceneTexts = {
+type TextsNode = {
   id: string;
   name: string;
   textDatas: TextData[];
@@ -27,17 +24,17 @@ type UpdateUiTarget = "allText" | "selectedGroup" | "selectedText";
 
 interface UpdateAllText {
   target: "allText";
-  data: SceneTexts[];
+  data: TextsNode[];
 }
 
 interface UpdateGroup {
   target: "selectedGroup";
-  data: TextData[];
+  data: TextsNode;
 }
 
 interface UpdateText {
   target: "selectedText";
-  data: TextData;
+  data: TextNode;
 }
 
 type UpdateUiValue = UpdateAllText | UpdateGroup | UpdateText;
@@ -47,7 +44,7 @@ interface UpdateUi {
   value: UpdateUiValue;
 }
 
-type PluginMessage = NavigateUi | UpdateUi;
+type PluginMessage = UpdateUi;
 
 interface GetTextData {
   type: "getTextData";
